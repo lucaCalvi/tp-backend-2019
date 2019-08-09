@@ -78,4 +78,26 @@ En la misma deberán indicar: fecha de la reunión, asistentes y por cada asiste
     La entrega final deberá hacerse enviando por email a los profesores la URL del repositorio de git. La fecha límite de entrega es dos días antes del cierre de regularidades, la misma debe incluir el código del trabajo y una defensa del mismo la cual debe haber sido pactada con anterioridad según la disponibilidad de los docente.
 
     El archivo readme.md deberá ser modificado y deberá agregarse al final el tema y enunciado del trabajo práctico y alcance pactado con el docente, el trabajo, año de cursado e integrantes (legajo, nombre y apellido).
+    
+5 - Información TP
 
+    Integrantes: 42740 - Babaglio, Luciano
+                 42713 - Calvigioni, Luca
+    
+    Enunciado:
+    Sistema de asignación de tareas
+    Desarrollo de un sistema que permita a los docentes un seguimiento más efectivo de sus alumnos mediante la asignación y control de       tareas. A su vez, los alumnos podrán hacer uso del mismo para revisar sus asignaciones pendientes como para coordinar trabajos           grupales con sus pares.
+    Las funcionalidades del sistema se basaran en 2 tipos de usuarios no excluyentes: Asignadores y asignados.
+    Funcionalidades de asignadores:
+    -Agregar contacto: Cada contacto contará con un identificador, correo electrónico y etiqueta (opcional).
+    -Categorizar contacto: mediante un sistema de etiquetas se permitirá el filtrar la lista de contacto.
+    -Instanciar una tarea: Cada tarea contará con identificador, descripción, fecha de inicio, fecha de fin, fecha límite, lugar             (opcional) y estado.
+    -Asignar una tarea: Cada tarea podrá ser asignada a uno o más contactos, individualmente o por etiqueta respectivamente.
+    -Chequear estado de tarea: Un asignador podrá ver quienes y en qué momento completaron una determinada tarea.
+    -Marcar tarea como completada.
+    -Notificar correcciones pendientes.
+    Funcionalidades de asignados:
+    -Revisar tareas pendientes: generar lista de tareas a la que el usuario ha sido asignado y no completo
+    -Revisar tareas concluidas: lista de tareas completadas por el usuario
+    -Enviar tarea para revisión: se permitirá el envío de parte del asignado al asignador para su revisión.
+    -Recibir notificación de corrección o notificación de aprobación.
