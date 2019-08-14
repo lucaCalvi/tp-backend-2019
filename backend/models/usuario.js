@@ -9,6 +9,7 @@ const Usuario = new mongoose.Schema({
     //tipoUsuario? -> Usuario cambiaria tipo dependiendo de cada tarea, es necesario?
     etiqueta: {type: Array, required: false}, 
     informacion: {type: String, required: true}
+    //contacto? -> Usuario puede agregar contactos, puede ser un array de id´s u otra clase?
 });
 
 module.exports = mongoose.model('Usuario', Usuario);
