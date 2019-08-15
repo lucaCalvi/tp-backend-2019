@@ -1,0 +1,20 @@
+<div>
+    <h3>Listado de usuarios</h3>
+</div>
+<div>
+    <table>
+        <thead>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Usuario</th>
+        </thead>
+        <tbody *ngFor="let usuario of usuarios">
+            <td>{{usuario.nombre}}</td>
+            <td>{{usuario.apellido}}</td> 
+            <td>{{usuario.nombreUsuario}}</td>
+            <td>
+                <a routerLink="/detalle-usuario/{{usuario._id}}" class="waves-effect waves-light btn">Detalle</a>
+            </td>
+        </tbody>
+    </table>
+</div>
