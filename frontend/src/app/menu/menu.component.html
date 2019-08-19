@@ -1,0 +1,23 @@
+<div class="blue z-depth-5 sup">
+    <div class="row">
+        <div class="col s1">
+            <a routerLink="" class="btn-floating btn-large waves-effect waves-light light-blue home"><i class="material-icons">home</i></a>    
+        </div>
+        <div class="col s11">
+            <h1 class="header">Sistema de asignacion de tareas</h1>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col s3 blue lighten-2 z-depth-5 inf">
+        <h4 class="nav">Navigation Panel</h4>
+        <ul>
+            <li><a routerLink="/listado-usuarios" class="waves-effect waves-light blue btn-large"><i class="material-icons right">account_circle</i>Usuarios</a></li>
+            <li><a routerLink="" class="waves-effect waves-light blue btn-large"><i class="material-icons right">event_note</i>Tareas</a></li>
+            <li><a routerLink="" class="waves-effect waves-light blue btn-large"><i class="material-icons right">error</i>Notificaciones</a></li>
+        </ul>
+    </div>
+    <div class="col s9 blue lighten-5 z-depth-5 inf">
+        <router-outlet></router-outlet>
+    </div>
+</div>

@@ -8,12 +8,14 @@ import { DetalleUsuarioComponent } from './detalle-usuario/detalle-usuario.compo
 
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { MenuComponent } from './menu/menu.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ListadoUsuariosComponent,
-    DetalleUsuarioComponent
+    DetalleUsuarioComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,
