@@ -4,11 +4,10 @@ UsuarioController = {};
 UsuarioController.getUsuarios = (req, res) => {
     Usuario.find()
       .then(usuarios => {
-          res.json(usuarios);
+          res.status(200).json(usuarios);
       })
       .catch(err => {
-          res.json(err);
-          console.log('Error ', err);
+          res.status(500).json({error: err.message});
       });
 }
 
@@ -16,11 +15,10 @@ UsuarioController.getUsuario = (req, res) => {
     const id = req.params.id;
     Usuario.findById(id)
       .then(usuario => {
-          res.json(usuario);
+          res.status(200).json(usuario);
       })
       .catch(err => {
-          res.json(err);
-          console.log('Error ', err);
+          res.status(500).json({error: err.message});
       });
 }
 
@@ -35,14 +33,28 @@ UsuarioController.insertUsuario = (req, res) => {
         informacion: req.body.informacion
     });
 
-    usuario.save()
-      .then(() => {
-          res.json('Usuario creado exitosamente');
-          console.log('Usuario creado exitosamente');
+    Usuario.find()
+      .then(usuarios => {
+            usuarios.forEach(user => {
+                if(user.email == usuario.email) {
+                    status = 400;
+                    throw new Error("El email ingresado ya está registrado");
+                };
+                if(user.nombreUsuario == usuario.nombreUsuario) {
+                    status = 400;
+                    throw new Error("El nombre de usuario ingresado ya existe");
+                };
+            });
+            usuario.save()
+              .then(() => {
+                    res.status(200).json({id: usuario._id});
+              })
+              .catch(err => {
+                    res.status(500).json({error: err.message});
+              });
       })
       .catch(err => {
-          res.json(err);
-          console.log('Error ', err);
+          res.status(status || 500).json({error: err.message});
       });
 }
 
@@ -58,14 +70,30 @@ UsuarioController.updateUsuario = (req, res) => {
         informacion: req.body.informacion
     }
 
-    Usuario.findByIdAndUpdate(id, {$set: usuario})
-      .then(() => {
-          res.json('Usuario actualizado exitosamente');
-          console.log('Usuario actualizado exitosamente');
-      })
+    Usuario.find()
+      .then(usuarios => {
+            usuarios.forEach(user => {
+                if(id != user._id) {
+                    if(user.email == usuario.email) {
+                        status = 400;
+                        throw new Error("El email ingresado ya está registrado");
+                    };
+                    if(user.nombreUsuario == usuario.nombreUsuario) {
+                        status = 400;
+                        throw new Error("El nombre de usuario ingresado ya existe");
+                    };
+                };
+            });
+            Usuario.findByIdAndUpdate(id, {$set: usuario})
+              .then(() => {
+                    res.status(200).json({id: id});
+              })
+              .catch(err => {
+                    res.status(500).json({error: err.message});
+              });
+            })
       .catch(err => {
-          res.json(err);
-          console.log('Error ', err);
+          res.status(500).json({error: err.message});
       });
 }
 
@@ -73,12 +101,10 @@ UsuarioController.deleteUsuario = (req, res) => {
     const id = req.params.id;
     Usuario.findByIdAndRemove(id)
       .then(() => {
-          res.json('Usuario eliminado exitosamente');
-          console.log('Usuario eliminado exitosamente');
+          res.status(200).json({id: id});
       })
       .catch(err => {
-          res.json(err);
-          console.log('Error ', err);
+          res.status(500).json({error: err.message});
       })
 }
 

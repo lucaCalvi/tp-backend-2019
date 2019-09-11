@@ -5,9 +5,9 @@ import { DetalleUsuarioComponent } from './detalle-usuario/detalle-usuario.compo
 import { MenuComponent } from './menu/menu.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '', pathMatch: 'full' },
-  { path: 'listado-usuarios', component: ListadoUsuariosComponent },
-  { path: 'detalle-usuario/:id', component: DetalleUsuarioComponent },
+  { path: '', redirectTo: '/api/usuarios', pathMatch: 'full' },
+  { path: 'api/usuarios', component: ListadoUsuariosComponent },
+  { path: 'api/usuarios/:id', component: DetalleUsuarioComponent },
   //{ path: 'menu', component: MenuComponent }
 ];
 
