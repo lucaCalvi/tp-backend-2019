@@ -9,7 +9,6 @@ import { UsuarioService } from '../usuario.service';
 export class ListadoUsuariosComponent implements OnInit {
 
   usuarios = null;
-  //error = null; Hacer componente para manejar errores
   selectedUsuario = null;
   cantUsuarios = null;
 

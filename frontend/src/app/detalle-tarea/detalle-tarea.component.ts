@@ -1,17 +1,17 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from '../usuario.service';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
 @Component({
-  selector: 'app-listado-tareas-asignadas',
-  templateUrl: './listado-tareas-asignadas.component.html',
-  styleUrls: ['./listado-tareas-asignadas.component.css']
+  selector: 'app-detalle-tarea',
+  templateUrl: './detalle-tarea.component.html',
+  styleUrls: ['./detalle-tarea.component.css']
 })
-export class ListadoTareasAsignadasComponent implements OnInit {
+export class DetalleTareaComponent implements OnInit {
 
-  tareas = null;
-  usuario = null;
+  tarea = null;
+  asignador = null;
 
   constructor(
     private usuarioService: UsuarioService,
@@ -19,29 +19,29 @@ export class ListadoTareasAsignadasComponent implements OnInit {
     private location: Location) { }
 
   ngOnInit() {
-    this.getTareas();
+    this.getTarea();
   }
 
-  getTareas() {
+  getTarea() {
     const id = this.route.snapshot.paramMap.get('id');
-    this.usuarioService.getTareas(id)
+    const idTarea = this.route.snapshot.paramMap.get('idTarea');
+    this.usuarioService.getTarea(id, idTarea)
       .subscribe(res => {
-        this.tareas = res;
-        this.getUsuario();
+        this.tarea = res;
+        this.getAsignador(id);
       },
       err => {
         console.log('Error ', err);
       });
   }
 
-  getUsuario() {
-    const id = this.route.snapshot.paramMap.get('id');
+  getAsignador(id) {
     this.usuarioService.getUsuario(id)
       .subscribe(res => {
-        this.usuario = res;
+        this.asignador = res;
       },
       err => {
-        console.log('Error ', err);
+        console.log('Error', err);
       });
   }
 

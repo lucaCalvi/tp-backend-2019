@@ -9,6 +9,6 @@ router.post('/', UsuarioController.insertUsuario);
 router.put('/:id', UsuarioController.updateUsuario);
 router.delete('/:id', UsuarioController.deleteUsuario);
 router.get('/:id/tareas', TareaController.getTareas);
-router.get(':id/tareas/:idTarea', TareaController.getTarea)
+router.get('/:id/tareas/:idTarea', TareaController.getTarea)
 
 module.exports = router;

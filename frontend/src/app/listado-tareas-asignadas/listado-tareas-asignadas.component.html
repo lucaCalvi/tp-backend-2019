@@ -1,5 +1,5 @@
 <div>
-    <h3>Tareas de </h3>
+    <h3>Tareas asignadas a {{usuario.nombre}} {{usuario.apellido}}</h3>
 </div>
 <div class="container">
     <table class="highlight">
@@ -17,9 +17,12 @@
                 <td>{{tarea.fechaInicio}}</td>
                 <td>{{tarea.estado}}</td>
                 <td>
-                    <a routerLink="" class="btn-floating waves-effect waves-light red"><i class="material-icons">description</i></a>
+                    <a routerLink="/api/usuarios/{{usuario._id}}/tareas/{{tarea._id}}" class="btn-floating waves-effect waves-light red"><i class="material-icons">description</i></a>
                 </td>
             </tr>
         </tbody>
     </table>
+</div>
+<div>
+    <button class="waves-effect waves-light btn red" (click)="goBack()">Volver</button>
 </div>

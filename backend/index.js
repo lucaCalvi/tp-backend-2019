@@ -16,7 +16,6 @@ app.use(express.json()); //Permite mostrar los datos en formato json
 
 //Routes
 app.use('/api/usuarios', require('./routes/usuario.routes'));
-//app.use('', require('./routes/tarea.routes'));
 
 //Server -> Correr server con comando 'npm run dev' (se agrego script a package.json)
 app.listen(app.get('port'), () => {

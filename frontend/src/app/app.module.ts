@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { MenuComponent } from './menu/menu.component';
 import { ListadoTareasAsignadasComponent } from './listado-tareas-asignadas/listado-tareas-asignadas.component';
+import { DetalleTareaComponent } from './detalle-tarea/detalle-tarea.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { ListadoTareasAsignadasComponent } from './listado-tareas-asignadas/list
     ListadoUsuariosComponent,
     DetalleUsuarioComponent,
     MenuComponent,
-    ListadoTareasAsignadasComponent
+    ListadoTareasAsignadasComponent,
+    DetalleTareaComponent
   ],
   imports: [
     BrowserModule,

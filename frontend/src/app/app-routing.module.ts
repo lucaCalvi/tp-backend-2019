@@ -4,13 +4,14 @@ import { ListadoUsuariosComponent } from './listado-usuarios/listado-usuarios.co
 import { DetalleUsuarioComponent } from './detalle-usuario/detalle-usuario.component';
 import { MenuComponent } from './menu/menu.component';
 import { ListadoTareasAsignadasComponent } from './listado-tareas-asignadas/listado-tareas-asignadas.component';
+import { DetalleTareaComponent } from './detalle-tarea/detalle-tarea.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/api/usuarios', pathMatch: 'full' },
   { path: 'api/usuarios', component: ListadoUsuariosComponent },
   { path: 'api/usuarios/:id', component: DetalleUsuarioComponent },
-  { path: 'api/usuarios/:id/tareas', component: ListadoTareasAsignadasComponent }
-  //{ path: 'api/usuarios/:id/tareas/:idTarea', component: }
+  { path: 'api/usuarios/:id/tareas', component: ListadoTareasAsignadasComponent },
+  { path: 'api/usuarios/:id/tareas/:idTarea', component: DetalleTareaComponent }
   //{ path: 'menu', component: MenuComponent }
 ];
 
