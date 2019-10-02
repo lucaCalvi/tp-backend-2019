@@ -9,13 +9,15 @@ import { DetalleUsuarioComponent } from './detalle-usuario/detalle-usuario.compo
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { MenuComponent } from './menu/menu.component';
+import { ListadoTareasAsignadasComponent } from './listado-tareas-asignadas/listado-tareas-asignadas.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ListadoUsuariosComponent,
     DetalleUsuarioComponent,
-    MenuComponent
+    MenuComponent,
+    ListadoTareasAsignadasComponent
   ],
   imports: [
     BrowserModule,

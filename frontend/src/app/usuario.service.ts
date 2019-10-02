@@ -17,4 +17,12 @@ export class UsuarioService {
   getUsuario(id) {
     return this.httpClient.get(this.URL_API + `/${id}`);
   }
+
+  getTareas(id) {
+    return this.httpClient.get(this.URL_API + `/${id}` + '/tareas');
+  }
+
+  getTarea() {
+    
+  }
 }

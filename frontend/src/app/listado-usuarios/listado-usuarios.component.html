@@ -1,5 +1,6 @@
 <div>
     <h3>Listado de usuarios</h3>
+    <h5>Usuarios: {{cantUsuarios}} <i class="material-icons">people</i></h5>
 </div>
 <div class="container">
     <table class="hightlight">
@@ -8,6 +9,7 @@
                 <th>Nombre</th>
                 <th>Apellido</th>
                 <th>Usuario</th>
+                <th>Tareas</th>
                 <th>Detalle</th>
             </tr>
         </thead>
@@ -16,6 +18,9 @@
                 <td>{{usuario.nombre}}</td>
                 <td>{{usuario.apellido}}</td> 
                 <td>{{usuario.nombreUsuario}}</td>
+                <td>
+                    <a routerLink="/api/usuarios/{{usuario._id}}/tareas" class="btn-floating waves-effect waves-light red"><i class="material-icons">event_note</i></a>
+                </td>
                 <td>
                     <a routerLink="/api/usuarios/{{usuario._id}}" class="btn-floating waves-effect waves-light red"><i class="material-icons">description</i></a>
                 </td>

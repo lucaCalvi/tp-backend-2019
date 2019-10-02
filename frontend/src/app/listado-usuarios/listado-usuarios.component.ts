@@ -11,6 +11,7 @@ export class ListadoUsuariosComponent implements OnInit {
   usuarios = null;
   //error = null; Hacer componente para manejar errores
   selectedUsuario = null;
+  cantUsuarios = null;
 
   constructor(private usuarioService: UsuarioService) { }
 
@@ -22,6 +23,7 @@ export class ListadoUsuariosComponent implements OnInit {
     this.usuarioService.getUsuarios()
       .subscribe(res => {
         this.usuarios = res;
+        this.cantUsuarios = this.usuarios.length;
       },
       err => {
         console.log('Error ', err);

@@ -7,7 +7,7 @@ const Usuario = new mongoose.Schema({
     nombreUsuario: {type: String, required: true},
     contraseña: {type: String, required: true},
     //tipoUsuario? -> Usuario cambiaria tipo dependiendo de cada tarea, es necesario?
-    etiqueta: {type: Array, required: false}, 
+    etiqueta: {type: Array, required: false}, //Ver si queda etiqueta
     informacion: {type: String, required: true}
     //contacto? -> Usuario puede agregar contactos, puede ser un array de id´s u otra clase?
 });

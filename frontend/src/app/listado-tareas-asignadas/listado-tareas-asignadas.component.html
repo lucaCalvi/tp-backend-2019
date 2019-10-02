@@ -1,0 +1,25 @@
+<div>
+    <h3>Tareas de </h3>
+</div>
+<div class="container">
+    <table class="highlight">
+        <thead>
+            <tr>
+                <th>Descripcion</th>
+                <th>Fecha de inicio</th>
+                <th>Estado</th>
+                <th>Detalle</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let tarea of tareas">
+                <td>{{tarea.descripcion}}</td>
+                <td>{{tarea.fechaInicio}}</td>
+                <td>{{tarea.estado}}</td>
+                <td>
+                    <a routerLink="" class="btn-floating waves-effect waves-light red"><i class="material-icons">description</i></a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
