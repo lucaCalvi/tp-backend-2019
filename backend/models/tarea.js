@@ -7,8 +7,8 @@ const Tarea = new mongoose.Schema({
     fechaLimite: {type: Date, required: true},
     lugar: {type: String, required: false},
     estado: {type: String, required: true},
-    ID_asignado: {type: String, required: false},
-    ID_asignador: {type: String, required: true} 
+    id_asignado: {type: Array, required: false},
+    id_asignador: {type: String, required: true} 
 });
 
 module.exports = mongoose.model('Tarea', Tarea);
