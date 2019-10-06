@@ -3,7 +3,7 @@ TareaController = {};
 
 TareaController.getTareas = (req, res) => {
     const id = req.params.id;
-    Tarea.find({ID_asignado: id})
+    Tarea.find({id_asignado: id})
       .then(tareas => {
           res.status(200).json(tareas);
       })

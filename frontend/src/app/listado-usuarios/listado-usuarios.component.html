@@ -1,9 +1,9 @@
 <div>
     <h3>Listado de usuarios</h3>
-    <h5>Usuarios: {{cantUsuarios}} <i class="material-icons">people</i></h5>
 </div>
 <div class="container">
-    <table class="hightlight">
+    <h5 *ngIf="usuarios == ''">No existen Usuarios registrados</h5>
+    <table class="hightlight" *ngIf="usuarios != ''">
         <thead>
             <tr>
                 <th>Nombre</th>

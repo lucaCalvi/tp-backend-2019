@@ -105,16 +105,10 @@ UsuarioController.deleteUsuario = (req, res) => {
             Tarea.deleteMany({id_asignador: id}, () => {
                 return Promise.resolve();
             });
-        }) //VER QUE ELIMINE ASIGNADO, SACAR CONTADOR, PONER "VACIO" EN CAMPOS VACIOS FRONT
+        })
         .then(() => {
-            Tarea.find({id_asignado: id}, (err, tareas) => {
-                tareas.forEach((tarea) => {
-                    array = tarea.id_asignado;
-                    let i = array.findIndex((value) => {
-                        value = id;
-                    });
-                    array.splice(i, 1);
-                });
+            Tarea.update({}, {$pull: {id_asignado: id}}, () => {
+                return Promise.resolve();
             });
         })
         .then(() => {
