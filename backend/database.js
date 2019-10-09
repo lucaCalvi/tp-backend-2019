@@ -9,6 +9,6 @@ mongoose.connect(URI, err => {
     else {
         console.log(err);
     }
-})
+});
 
 module.exports = mongoose;
