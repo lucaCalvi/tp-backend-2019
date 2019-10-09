@@ -24,6 +24,7 @@ UsuarioController.getUsuario = (req, res) => {
 }
 
 UsuarioController.insertUsuario = (req, res) => {
+    let status = null;
     const usuario = new Usuario({
         nombre: req.body.nombre,
         apellido: req.body.apellido,
@@ -34,24 +35,26 @@ UsuarioController.insertUsuario = (req, res) => {
         informacion: req.body.informacion,
         contactos: req.body.contactos
     });
-
-    Usuario.find()
+    
+    //NO USAR ID MONGO, usar nombre de usuario para las usaurio y un id generado para tareas
+    Usuario.find({$or: [{email: usuario.email}, {nombreUsuario: usuario.nombreUsuario}]})
         .then(usuarios => {
-            usuarios.forEach(user => {
-                if(user.email == usuario.email) {
+            if(usuarios.length > 0){
+                let validarEmail = usuarios.find((user) => {
+                    return user.email == usuario.email
+                });
+                if(validarEmail != null){
                     status = 400;
-                    //return Promise.reject("El email ingresado ya está registrado");
                     throw new Error("El email ingresado ya está registrado");
-                };
-                if(user.nombreUsuario == usuario.nombreUsuario) {
+                }
+                else{
                     status = 400;
-                    //return Promise.reject("El nombre de usuario ingresado ya existe");
                     throw new Error("El nombre de usuario ingresado ya existe");
-                };
-            });
+                }
+            }
             return Promise.resolve();
         })
-        .then((msg) => {
+        .then(() => {
             usuario.save(() => {
                 res.status(200).json({id: usuario._id});
             });
@@ -62,6 +65,7 @@ UsuarioController.insertUsuario = (req, res) => {
 }
 
 UsuarioController.updateUsuario = (req, res) => {
+    let status = null;
     const id = req.params.id;
     const usuario = {
         nombre: req.body.nombre,
@@ -74,22 +78,21 @@ UsuarioController.updateUsuario = (req, res) => {
         contactos: req.body.contactos
     };
 
-    Usuario.find()
+    Usuario.find({$or: [{email: usuario.email}, {nombreUsuario: usuario.nombreUsuario}], _id: {$ne: id}})
         .then(usuarios => {
-            usuarios.forEach(user => {
-                if(id != user._id) {
-                    if(user.email == usuario.email) {
-                        status = 400;
-                        //return Promise.reject("El email ingresado ya está registrado");
-                        throw new Error("El email ingresado ya está registrado");
-                    };
-                    if(user.nombreUsuario == usuario.nombreUsuario) {
-                        status = 400;
-                        //return Promise.reject("El nombre de usuario ingresado ya existe");
-                        throw new Error("El nombre de usuario ingresado ya existe");
-                    };
-                };
-            });
+            if(usuarios.length > 0){
+                let validarEmail = usuarios.find((user) => {
+                    return (user.email == usuario.email)
+                });
+                if(validarEmail != null){
+                    status = 400;
+                    throw new Error("El email ingresado ya está registrado");
+                }
+                else{
+                    status = 400;
+                    throw new Error("El nombre de usuario ingresado ya existe");
+                }
+            }
             return Promise.resolve();
         })
         .then(() => {
