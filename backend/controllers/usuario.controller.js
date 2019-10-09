@@ -40,16 +40,18 @@ UsuarioController.insertUsuario = (req, res) => {
             usuarios.forEach(user => {
                 if(user.email == usuario.email) {
                     status = 400;
-                    return Promise.reject("El email ingresado ya está registrado");
+                    //return Promise.reject("El email ingresado ya está registrado");
+                    throw new Error("El email ingresado ya está registrado");
                 };
                 if(user.nombreUsuario == usuario.nombreUsuario) {
                     status = 400;
-                    return Promise.reject("El nombre de usuario ingresado ya existe");
+                    //return Promise.reject("El nombre de usuario ingresado ya existe");
+                    throw new Error("El nombre de usuario ingresado ya existe");
                 };
             });
             return Promise.resolve();
         })
-        .then(() => {
+        .then((msg) => {
             usuario.save(() => {
                 res.status(200).json({id: usuario._id});
             });
@@ -78,11 +80,13 @@ UsuarioController.updateUsuario = (req, res) => {
                 if(id != user._id) {
                     if(user.email == usuario.email) {
                         status = 400;
-                        return Promise.reject("El email ingresado ya está registrado");
+                        //return Promise.reject("El email ingresado ya está registrado");
+                        throw new Error("El email ingresado ya está registrado");
                     };
                     if(user.nombreUsuario == usuario.nombreUsuario) {
                         status = 400;
-                        return Promise.reject("El nombre de usuario ingresado ya existe");
+                        //return Promise.reject("El nombre de usuario ingresado ya existe");
+                        throw new Error("El nombre de usuario ingresado ya existe");
                     };
                 };
             });
@@ -107,7 +111,7 @@ UsuarioController.deleteUsuario = (req, res) => {
             });
         })
         .then(() => {
-            Tarea.update({}, {$pull: {id_asignado: id}}, () => {
+            Tarea.update({}, {$pull: {id_asignado: id}}, { multi: true }, () => {
                 return Promise.resolve();
             });
         })
