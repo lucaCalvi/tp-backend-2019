@@ -89,15 +89,20 @@ En la misma deberán indicar: fecha de la reunión, asistentes y por cada asiste
     Desarrollo de un sistema que permita a los docentes un seguimiento más efectivo de sus alumnos mediante la asignación y control de       tareas. A su vez, los alumnos podrán hacer uso del mismo para revisar sus asignaciones pendientes como para coordinar trabajos           grupales con sus pares.
     Las funcionalidades del sistema se basaran en 2 tipos de usuarios no excluyentes: Asignadores y asignados.
     Funcionalidades de asignadores:
+    -Crear usuario: una persona puede crearse un usuario, el mismo contará con un ID, nombre, apellido, nombre de usuario, contraseña e     email.
+    -Modificar usuario
+    -Eliminar usuario: cada usuario podrá eliminar su cuenta.
+    -Listar Usuarios: cada usuario podrá ver los usuarios existentes junto con su información.
     -Agregar contacto: Cada contacto contará con un identificador, correo electrónico y etiqueta (opcional).
-    -Categorizar contacto: mediante un sistema de etiquetas se permitirá el filtrar la lista de contacto.
+    -Eliminar contacto.
     -Instanciar una tarea: Cada tarea contará con identificador, descripción, fecha de inicio, fecha de fin, fecha límite, lugar             (opcional) y estado.
-    -Asignar una tarea: Cada tarea podrá ser asignada a uno o más contactos, individualmente o por etiqueta respectivamente.
+    -Modificar tarea.
+    -Eliminar tarea: cada asignador puede eliminar una tarea instanciada por el.
+    -Asignar una tarea: Cada tarea podrá ser asignada a uno o más contactos, individualmente.
     -Chequear estado de tarea: Un asignador podrá ver quienes y en qué momento completaron una determinada tarea.
+    -Listar tareas: Un asignador podrá ver todas las tareas que creó junto con su información.
     -Marcar tarea como completada.
-    -Notificar correcciones pendientes.
     Funcionalidades de asignados:
-    -Revisar tareas pendientes: generar lista de tareas a la que el usuario ha sido asignado y no completo
-    -Revisar tareas concluidas: lista de tareas completadas por el usuario
+    -Revisar tareas pendientes: generar lista de tareas a la que el usuario ha sido asignado y no completo.
+    -Revisar tareas concluidas: lista de tareas completadas por el usuario.
     -Enviar tarea para revisión: se permitirá el envío de parte del asignado al asignador para su revisión.
-    -Recibir notificación de corrección o notificación de aprobación.
