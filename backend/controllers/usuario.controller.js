@@ -17,7 +17,7 @@ UsuarioController.getUsuarios = (req, res) => {
 
 UsuarioController.getUsuario = (req, res) => {
     const nombreUsuario = req.params.nombreUsuario;
-    Usuario.find({nombreUsuario: nombreUsuario})
+    Usuario.findOne({nombreUsuario: nombreUsuario})
       .then(usuario => {
           res.status(200).json(usuario);
       })
@@ -58,7 +58,7 @@ UsuarioController.insertUsuario = (req, res) => {
         })
         .then(() => {
             usuario.save(() => {
-                res.status(200).json({id: nombreUsuario});
+                res.status(200).json({id: req.body.nombreUsuario});
             });
         })
         .catch(err => {
@@ -98,7 +98,7 @@ UsuarioController.updateUsuario = (req, res) => {
             return Promise.resolve();
         })
         .then(() => {
-            Usuario.findByIdAndUpdate(nombreUsuario, {$set: usuario}, () => {
+            Usuario.findOneAndUpdate({nombreUsuario: nombreUsuario}, {$set: usuario}, () => {
                 res.status(200).json({id: nombreUsuario});
             });
         })
@@ -109,7 +109,7 @@ UsuarioController.updateUsuario = (req, res) => {
 
 UsuarioController.deleteUsuario = (req, res) => {
     const nombreUsuario = req.params.nombreUsuario;
-    Usuario.findByIdAndRemove(nombreUsuario)
+    Usuario.findOneAndRemove({nombreUsuario: nombreUsuario})
         .then(() => {
             Tarea.deleteMany({id_asignador: nombreUsuario}, () => {
                 return Promise.resolve();

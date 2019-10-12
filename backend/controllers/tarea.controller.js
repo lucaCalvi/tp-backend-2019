@@ -2,8 +2,8 @@ const Tarea = require('../models/tarea');
 TareaController = {};
 
 TareaController.getTareas = (req, res) => {
-    const id = req.params.id;
-    Tarea.find({id_asignado: id})
+    const nombreUsuario = req.params.nombreUsuario;
+    Tarea.find({id_asignado: nombreUsuario})
       .then(tareas => {
           res.status(200).json(tareas);
       })
