@@ -4,11 +4,12 @@ const UsuarioController = require('../controllers/usuario.controller');
 const TareaController = require('../controllers/tarea.controller');
 
 router.get('/', UsuarioController.getUsuarios);
-router.get('/:id', UsuarioController.getUsuario);
+router.get('/:nombreUsuario', UsuarioController.getUsuario);
 router.post('/', UsuarioController.insertUsuario);
-router.put('/:id', UsuarioController.updateUsuario);
-router.delete('/:id', UsuarioController.deleteUsuario);
-router.get('/:id/tareas', TareaController.getTareas);
-router.get('/:id/tareas/:idTarea', TareaController.getTarea)
+router.put('/:nombreUsuario', UsuarioController.updateUsuario);
+router.delete('/:nombreUsuario', UsuarioController.deleteUsuario);
+router.get('/:nombreUsuario/tareas', TareaController.getTareas);
+router.get('/:nombreUsuario/tareas/:idTarea', TareaController.getTarea);
+router.get('/search/:nombreUsuario', UsuarioController.searchUsuario);
 
 module.exports = router;

@@ -2,6 +2,9 @@ const Usuario = require('../models/usuario');
 const Tarea = require('../models/tarea');
 UsuarioController = {};
 
+//NO USAR ID MONGO, usar nombre de usuario para las usaurio y un id generado para tareas
+//Verificar consistencia de cambio en usuario, tarea queda con ID mongo
+
 UsuarioController.getUsuarios = (req, res) => {
     Usuario.find()
       .then(usuarios => {
@@ -13,8 +16,8 @@ UsuarioController.getUsuarios = (req, res) => {
 }
 
 UsuarioController.getUsuario = (req, res) => {
-    const id = req.params.id;
-    Usuario.findById(id)
+    const nombreUsuario = req.params.nombreUsuario;
+    Usuario.find({nombreUsuario: nombreUsuario})
       .then(usuario => {
           res.status(200).json(usuario);
       })
@@ -36,7 +39,6 @@ UsuarioController.insertUsuario = (req, res) => {
         contactos: req.body.contactos
     });
     
-    //NO USAR ID MONGO, usar nombre de usuario para las usaurio y un id generado para tareas
     Usuario.find({$or: [{email: usuario.email}, {nombreUsuario: usuario.nombreUsuario}]})
         .then(usuarios => {
             if(usuarios.length > 0){
@@ -56,7 +58,7 @@ UsuarioController.insertUsuario = (req, res) => {
         })
         .then(() => {
             usuario.save(() => {
-                res.status(200).json({id: usuario._id});
+                res.status(200).json({id: nombreUsuario});
             });
         })
         .catch(err => {
@@ -66,7 +68,7 @@ UsuarioController.insertUsuario = (req, res) => {
 
 UsuarioController.updateUsuario = (req, res) => {
     let status = null;
-    const id = req.params.id;
+    const nombreUsuario = req.params.nombreUsuario;
     const usuario = {
         nombre: req.body.nombre,
         apellido: req.body.apellido,
@@ -78,7 +80,7 @@ UsuarioController.updateUsuario = (req, res) => {
         contactos: req.body.contactos
     };
 
-    Usuario.find({$or: [{email: usuario.email}, {nombreUsuario: usuario.nombreUsuario}], _id: {$ne: id}})
+    Usuario.find({$or: [{email: usuario.email}, {nombreUsuario: usuario.nombreUsuario}], nombreUsuario: {$ne: nombreUsuario}})
         .then(usuarios => {
             if(usuarios.length > 0){
                 let validarEmail = usuarios.find((user) => {
@@ -96,8 +98,8 @@ UsuarioController.updateUsuario = (req, res) => {
             return Promise.resolve();
         })
         .then(() => {
-            Usuario.findByIdAndUpdate(id, {$set: usuario}, () => {
-                res.status(200).json({id: id});
+            Usuario.findByIdAndUpdate(nombreUsuario, {$set: usuario}, () => {
+                res.status(200).json({id: nombreUsuario});
             });
         })
         .catch(err => {
@@ -106,24 +108,35 @@ UsuarioController.updateUsuario = (req, res) => {
 }
 
 UsuarioController.deleteUsuario = (req, res) => {
-    const id = req.params.id;
-    Usuario.findByIdAndRemove(id)
+    const nombreUsuario = req.params.nombreUsuario;
+    Usuario.findByIdAndRemove(nombreUsuario)
         .then(() => {
-            Tarea.deleteMany({id_asignador: id}, () => {
+            Tarea.deleteMany({id_asignador: nombreUsuario}, () => {
                 return Promise.resolve();
             });
         })
         .then(() => {
-            Tarea.update({}, {$pull: {id_asignado: id}}, { multi: true }, () => {
+            Tarea.update({}, {$pull: {id_asignado: nombreUsuario}}, { multi: true }, () => {
                 return Promise.resolve();
             });
         })
         .then(() => {
-            res.status(200).json({id: id});
+            res.status(200).json({id: nombreUsuario});
         })
         .catch(err => {
             res.status(500).json({error: err.message});
         });
+}
+
+UsuarioController.searchUsuario = (req, res) => {
+    const usuario = req.params.nombreUsuario;
+    Usuario.find({nombreUsuario: {$regex : usuario}})
+      .then(usuarios => {
+          res.status(200).json(usuarios);
+      })
+      .catch(err => {
+          res.status(500).json({error: err.message});
+      });
 }
 
 module.exports = UsuarioController;
