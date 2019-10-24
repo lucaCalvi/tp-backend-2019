@@ -28,7 +28,8 @@ export class DetalleTareaComponent implements OnInit {
     this.usuarioService.getTarea(id, idTarea)
       .subscribe(res => {
         this.tarea = res;
-        this.getAsignador(id);
+        const id_asignador = this.tarea.id_asignador;
+        this.getAsignador(id_asignador);
       },
       err => {
         console.log('Error ', err);

@@ -18,7 +18,7 @@
                 <td>{{tarea.fechaInicio | date: 'shortDate'}}</td>
                 <td>{{tarea.estado}}</td>
                 <td>
-                    <a routerLink="/api/usuarios/{{usuario._id}}/tareas/{{tarea._id}}" class="btn-floating waves-effect waves-light red"><i class="material-icons">description</i></a>
+                    <a routerLink="/api/usuarios/{{usuario.nombreUsuario}}/tareas/{{tarea._id}}" class="btn-floating waves-effect waves-light red"><i class="material-icons">description</i></a>
                 </td>
             </tr>
         </tbody>
