@@ -19,10 +19,10 @@
                 <td>{{usuario.apellido}}</td> 
                 <td>{{usuario.nombreUsuario}}</td>
                 <td>
-                    <a routerLink="/api/usuarios/{{usuario._id}}/tareas" class="btn-floating waves-effect waves-light red"><i class="material-icons">event_note</i></a>
+                    <a routerLink="/api/usuarios/{{usuario.nombreUsuario}}/tareas" class="btn-floating waves-effect waves-light red"><i class="material-icons">event_note</i></a>
                 </td>
                 <td>
-                    <a routerLink="/api/usuarios/{{usuario._id}}" class="btn-floating waves-effect waves-light red"><i class="material-icons">description</i></a>
+                    <a routerLink="/api/usuarios/{{usuario.nombreUsuario}}" class="btn-floating waves-effect waves-light red"><i class="material-icons">description</i></a>
                 </td>
             </tr>
         </tbody>
